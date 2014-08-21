@@ -1,0 +1,1 @@
+composer create-project --stability="dev" zendframework/skeleton-application blog
