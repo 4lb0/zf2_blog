@@ -1,0 +1,16 @@
+<?php
+return array(
+    'doctrine' => array(
+        'connection' => array(
+            'orm_default' => array(
+                'params' => array(
+                    // Cambiar estos parámetros
+                    'host'     => 'localhost',
+                    'user'     => 'root',
+                    'password' => '',
+                    'dbname'   => 'cursozf2_blog',
+                )
+            )
+        )
+    ),
+);

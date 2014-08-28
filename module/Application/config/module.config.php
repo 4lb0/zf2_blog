@@ -137,4 +137,23 @@ return array(
             ),
         ),
     ),
+    'doctrine' => array(
+        'driver' => array(
+            // Definimos como y donde Doctrine va a parsear las configuracion de las entidades 
+            'annotation_driver' => array(
+                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'cache' => 'array',
+                'paths' => array(
+                    __DIR__ . '/../src/Application/Entity',
+                ),
+            ),
+            // Para la conexión que llamamos orm_default (la configuramos en doctrine.local.php)
+            // declaramos los namespaces que vamos a usar y con que driver esta configurado.
+            'orm_default' => array(
+                'drivers' => array(
+                    'Application\Entity' => 'annotation_driver'
+                ),
+            ),
+        ),
+    ),
 );
