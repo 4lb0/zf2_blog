@@ -2,3 +2,5 @@ composer create-project --stability="dev" zendframework/skeleton-application blo
 php -S 0.0.0.0:8080 -t public/ public/index.php
 composer require zendframework/zftool
 vendor/bin/zf.php create controller Admin Application
+composer require doctrine/doctrine-module:dev-master
+composer require doctrine/doctrine-orm-module:dev-master
