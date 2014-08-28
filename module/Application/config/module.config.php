@@ -39,6 +39,23 @@ return array(
                         'action'        => 'index',
                     ),
                 ),
+                // Con este parámetro permitimos que exista /admin como ruta
+                'may_terminate' => true, 
+                // Aca agregamos las rutas como antes pero van a tener como 
+                // prefijo la ruta padre, por ejemplo aca /admin/nuevo
+                'child_routes' => array(
+                    'nuevo' => array(
+                        'type'    => 'Literal',
+                        'options' => array(
+                            'route'    => '/nuevo',
+                            'defaults' => array(
+                                // El controller no hace falta definirlo porque 
+                                // toma el default de la ruta padre
+                                'action' => 'nuevo',
+                            ),
+                        ),
+                    ),
+                ),
             ),
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new
