@@ -30,6 +30,16 @@ return array(
                     ),
                 ),
             ),
+            'entrada' => array(
+                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'options' => array(
+                    'route'    => '/entrada/:id',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Index',
+                        'action'     => 'verEntrada',
+                    ),
+                ),
+            ),
             'admin' => array(
                 'type'    => 'Literal',
                 'options' => array(

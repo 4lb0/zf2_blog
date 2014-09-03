@@ -3,3 +3,4 @@ vendor\bin\zf.php.bat create controller Admin Application
 vendor\bin\zf.php.bat orm:info
 vendor\bin\zf.php.bat orm:schema-tool:create
 vendor\bin\zf.php.bat orm:generate-entities --generate-annotations=true --generate-methods=true module/Application/src
+vendor\bin\zf.php.bat create action verEntrada Index Application
