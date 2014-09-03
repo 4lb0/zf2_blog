@@ -4,3 +4,4 @@ composer require zendframework/zftool
 vendor/bin/zf.php create controller Admin Application
 composer require doctrine/doctrine-module:dev-master
 composer require doctrine/doctrine-orm-module:dev-master
+vendor/bin/zf.php orm:info
