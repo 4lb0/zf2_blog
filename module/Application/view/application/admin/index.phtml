@@ -2,8 +2,12 @@
 <div class="page-header">
     <h1>Admin</h1>
 </div>
-<?php echo $this->flashMessenger()->render(); ?>
 <div class="row">
+<?php
+$flash = $this->flashMessenger();
+echo $flash->render('error',   array('alert', 'alert-dismissable', 'alert-danger'));
+echo $flash->render('success', array('alert', 'alert-dismissable', 'alert-success'));
+?>
     <table class="table table-striped">
         <thead>
         <tr>
