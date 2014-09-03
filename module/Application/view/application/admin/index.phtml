@@ -3,5 +3,23 @@
     <h1>Admin</h1>
 </div>
 <div class="row">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Título</th>
+            <th>Contenido</th>
+        </tr>  
+        </thead>
+        <tbody>          
+    <?php foreach ($entradas as $entrada): ?>
+        <tr>
+            <td><?php echo $entrada->getTitulo() ?></td>
+            <td><?php echo $entrada->getContenido() ?></td>
+        </tr>
+    <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+<div class="row">
     <a class="btn btn-default" href="<?php echo $this->url('admin/nuevo')  ?>">Crear nueva entrada</a>
 </div>
