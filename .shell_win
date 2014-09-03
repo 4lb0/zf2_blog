@@ -1,3 +1,4 @@
 php -S 0.0.0.0:8080 -t public public\index.php
 vendor\bin\zf.php.bat create controller Admin Application
 vendor\bin\zf.php.bat orm:info
+vendor\bin\zf.php.bat orm:schema-tool:create
