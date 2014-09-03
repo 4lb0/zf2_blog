@@ -40,6 +40,9 @@ class AdminController extends AbstractActionController
             // aca ejecuta en la base todos los cambios que le pedímos
             $em->flush();
 
+            // Agregamos el mensaje
+            $this->flashMessenger()->addMessage('Entrada creada correctamente.');
+
             // redirigimos al listado
             return $this->redirect()->toRoute('admin');
         }
