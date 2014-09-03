@@ -5,19 +5,15 @@
 
 <div class="row">
 
-    <?php foreach ([
-        (object) ["titulo" => "Maecenas ac odio in metus molestie gravida", "resumen" => "Fusce eget lectus rutrum, congue leo sed, dictum erat. Etiam consequat ante at molestie pellentesque. Etiam fringilla"],
-        (object) ["titulo" => "Phasellus quis turpis", "resumen" => "Duis blandit neque nec eros placerat, id vulputate metus interdum. Morbi et tellus eget est aliquam tincidunt quis nec justo"],
-        (object) ["titulo" => "Aenean vitae lacinia lorem", "resumen" => "Ut consequat lobortis ligula, quis pretium mi porttitor eget. In vitae magna luctus risus ornare efficitur. Sed bibendum quam purus"],
-    ] as $post): ?>
+    <?php foreach ($entradas as $entrada): ?>
     <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $post->titulo ?></h3>
+                <h3 class="panel-title"><?php echo $entrada->getTitulo() ?></h3>
             </div>
             <div class="panel-body">
-                <p><?php echo $post->resumen ?>...</p>
-                <p><a class="btn btn-primary pull-right" href="#"><?php echo $this->translate('Leer post') ?> &raquo;</a></p>
+                <p><?php echo $entrada->getResumen() ?></p>
+                <p><a class="btn btn-primary pull-right" href="<?php echo $this->url('entrada', array('id' => $entrada->getId())); ?>"><?php echo $this->translate('Leer post') ?> &raquo;</a></p>
             </div>
         </div>
     </div>

@@ -73,4 +73,9 @@ class Entrada
     {
         return $this->contenido;
     }
+
+    public function getResumen()
+    {
+        return wordwrap($this->getContenido(), 200, '...', true);
+    }
 }
