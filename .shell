@@ -6,3 +6,4 @@ composer require doctrine/doctrine-module:dev-master
 composer require doctrine/doctrine-orm-module:dev-master
 vendor/bin/zf.php orm:info
 vendor/bin/zf.php orm:schema-tool:create
+vendor/bin/zf.php orm:generate-entities --generate-annotations=true --generate-methods=true module/Application/src
