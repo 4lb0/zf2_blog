@@ -20,6 +20,16 @@ return array(
                     ),
                 ),
             ),
+            'archivo' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/archivo',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Index',
+                        'action'     => 'archivo',
+                    ),
+                ),
+            ),
             'acerca' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(

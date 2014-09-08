@@ -8,3 +8,4 @@ vendor/bin/zf.php orm:info
 vendor/bin/zf.php orm:schema-tool:create
 vendor/bin/zf.php orm:generate-entities --generate-annotations=true --generate-methods=true module/Application/src
 vendor/bin/zf.php create action verEntrada Index Application
+vendor/bin/zf.php create action archivo Index Application
