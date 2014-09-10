@@ -13,6 +13,7 @@ echo $flash->render('success', array('alert', 'alert-dismissable', 'alert-succes
         <tr>
             <th>Título</th>
             <th>Contenido</th>
+            <th>Acciones</th>
         </tr>  
         </thead>
         <tbody>          
@@ -20,6 +21,7 @@ echo $flash->render('success', array('alert', 'alert-dismissable', 'alert-succes
         <tr>
             <td><?php echo $entrada->getTitulo() ?></td>
             <td><?php echo $entrada->getContenido() ?></td>
+            <td><a href="<?php echo $this->url('admin/eliminar', array('id' => $entrada->getId())) ?>" class="ajax">Eliminar</a></td>
         </tr>
     <?php endforeach; ?>
         </tbody>

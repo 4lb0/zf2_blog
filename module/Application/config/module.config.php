@@ -76,6 +76,25 @@ return array(
                             ),
                         ),
                     ),
+                    'eliminar' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/eliminar/:id',
+                            'defaults' => array(
+                                'action' => 'eliminar',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+            'login' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/login',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Usuario',
+                        'action'     => 'login',
+                    ),
                 ),
             ),
             // The following is a route to simplify getting started creating
@@ -133,6 +152,7 @@ return array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
             'Application\Controller\Admin' => 'Application\Controller\AdminController',
+            'Application\Controller\Usuario' => 'Application\Controller\UsuarioController',
         ),
     ),
     'view_manager' => array(
@@ -149,6 +169,9 @@ return array(
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',
+        ),
+        'strategies' => array(
+           'ViewJsonStrategy',
         ),
     ),
     // Placeholder for console routes
@@ -174,6 +197,14 @@ return array(
                 'drivers' => array(
                     'Application\Entity' => 'annotation_driver'
                 ),
+            ),
+        ),
+        'authentication' => array(
+            'orm_default' => array(
+                'object_manager' => 'Doctrine\ORM\EntityManager',
+                'identity_class' => 'Application\Entity\Usuario',
+                'identity_property' => 'email',
+                'credential_property' => 'contrasena',
             ),
         ),
     ),

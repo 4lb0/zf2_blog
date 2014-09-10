@@ -19,6 +19,11 @@ class Module
         $eventManager        = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
+
+        $serviceManager = $e->getApplication()->getServiceManager();
+        $autenticacion = $serviceManager->get('Zend\Authentication\AuthenticationService');
+        $vista = $e->getApplication()->getMvcEvent()->getViewModel();
+        $vista->usuario = $autenticacion->getIdentity();
     }
 
     public function getConfig()
@@ -36,4 +41,16 @@ class Module
             ),
         );
     }
+
+    public function getServiceConfig()
+    {
+        return array(
+            'factories' => array(
+                'Zend\Authentication\AuthenticationService' => function ($serviceManager) {
+                    return $serviceManager->get('doctrine.authenticationservice.orm_default');
+                }
+            )
+        );
+    }
+
 }

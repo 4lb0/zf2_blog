@@ -4,11 +4,26 @@ namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Zend\View\Model\JsonModel;
 use Application\Form\EntradaForm;
 use Application\Entity\Entrada;
+use Zend\Mvc\MvcEvent;
 
 class AdminController extends AbstractActionController
 {
+    public function __construct()
+    {
+        $events = $this->getEventManager();
+        $events->attach(MvcEvent::EVENT_DISPATCH, array($this, 'checkLogin'));
+    }
+
+    public function checkLogin()
+    {
+        $authService = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+        if (!$authService->getIdentity()) {
+            return $this->redirect()->toRoute('login');
+        }
+    }
 
     public function indexAction()
     {
@@ -49,6 +64,22 @@ class AdminController extends AbstractActionController
         return new ViewModel(['form' => $form]);
     }
 
+    public function eliminarAction()
+    {
+        $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        $entrada = $em->find('Application\Entity\Entrada', $this->params('id'));
+        $mensaje = sprintf("Entrada '%s' eliminada correctamente", $entrada->getTitulo());
+        $em->remove($entrada);
+        $em->flush();
+//        if ($this->request->isXmlHttpRequest()) {
+            return new JsonModel([
+                'mensaje' => $mensaje,
+                'eliminado' => true,
+            ]);
+  //      }
+        $this->flashMessenger()->addSuccessMessage($mensaje);
+        return $this->redirect()->toRoute('admin');
+    }
 
 }
 
