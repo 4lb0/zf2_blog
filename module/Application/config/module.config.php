@@ -78,6 +78,16 @@ return array(
                     ),
                 ),
             ),
+            'login' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/login',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Usuario',
+                        'action'     => 'login',
+                    ),
+                ),
+            ),
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
@@ -133,6 +143,7 @@ return array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
             'Application\Controller\Admin' => 'Application\Controller\AdminController',
+            'Application\Controller\Usuario' => 'Application\Controller\UsuarioController',
         ),
     ),
     'view_manager' => array(
