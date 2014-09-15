@@ -4,6 +4,7 @@ namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Application\Form\LoginForm;
 
 class UsuarioController extends AbstractActionController
 {
@@ -15,7 +16,8 @@ class UsuarioController extends AbstractActionController
 
     public function loginAction()
     {
-        return new ViewModel();
+        $form = new LoginForm('login');
+        return new ViewModel(['form' => $form]);
     }
 
 
