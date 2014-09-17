@@ -17,7 +17,25 @@ class Entrada
     protected $titulo;
     /** @ORM\Column */
     protected $contenido;
-
+    /**
+     * @ORM\ManyToOne(targetEntity="Categoria", inversedBy="entradas")
+     * @ORM\JoinColumn(name="categoria_id", referencedColumnName="id")
+     **/
+    protected $categoria;
+    /**
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="entradas")
+     * @ORM\JoinTable(name="entradas_tags")
+     **/
+    protected $tags;    
+    /**
+     * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="entradas")
+     * @ORM\JoinColumn(referencedColumnName="id")
+     **/
+    protected $autor;
+    /**
+     * @ORM\OneToMany(targetEntity="Imagen", mappedBy="entrada")
+     **/
+    protected $imagenes;
     /**
      * Get id
      *

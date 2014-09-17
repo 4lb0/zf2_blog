@@ -23,6 +23,10 @@ class Usuario
     protected $activo;
     /** @ORM\Column(type="datetime") */
     protected $fechaAlta;
+    /**
+     * @ORM\OneToMany(targetEntity="Entrada", mappedBy="autor")
+     **/
+    protected $entradas;
 
     /**
      * Get id
