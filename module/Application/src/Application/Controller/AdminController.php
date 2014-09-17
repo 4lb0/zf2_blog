@@ -21,7 +21,7 @@ class AdminController extends AbstractActionController
     {
         $authService = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
         if (!$authService->getIdentity()) {
-            return $this->redirect()->toRoute('login');
+            // return $this->redirect()->toRoute('login');
         }
     }
 
@@ -40,26 +40,18 @@ class AdminController extends AbstractActionController
 
     public function nuevoAction()
     {
-        $form = new EntradaForm();
+        $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        $entrada = new Entrada();
+        $form = new EntradaForm($em);
+        $form->bind($entrada);
         if ($this->request->isPost()) {
-            $data = $this->request->getPost();
-
-            // por ahora seteamos los datos manualmente
-            $entrada = new Entrada();
-            $entrada->setTitulo($data->titulo); 
-            $entrada->setContenido($data->contenido);
-                        
-            $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-            // le decimos al EntityManager que vamos a guardar el objeto entrada
-            $em->persist($entrada);
-            // aca ejecuta en la base todos los cambios que le pedímos
-            $em->flush();
-
-            // Agregamos el mensaje
-            $this->flashMessenger()->addSuccessMessage('Entrada creada correctamente.');
-
-            // redirigimos al listado
-            return $this->redirect()->toRoute('admin');
+            $form->setData($this->request->getPost());
+            if ($form->isValid()) {
+                $em->persist($entrada);
+                $em->flush();
+                $this->flashMessenger()->addSuccessMessage('Entrada creada correctamente.');
+                return $this->redirect()->toRoute('admin');
+            }
         }
         return new ViewModel(['form' => $form]);
     }

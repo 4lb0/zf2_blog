@@ -2,29 +2,22 @@
 
 namespace Application\Form;
 
+use Doctrine\Common\Persistence\ObjectManager;
+use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use Zend\Form\Form;
 
 class EntradaForm extends Form
 {
 
-    public function __construct()
+    public function __construct(ObjectManager $objectManager)
     {
-        parent::__construct('entrada');
+        parent::__construct('entrada-form');
 
-        $this->add([
-            'name' => 'titulo',
-            'type' => 'Text',
-            'options' => [
-                'label' => 'Título:',
-            ],
-        ]);
-        $this->add([
-            'name' => 'contenido',
-            'type' => 'Textarea',
-            'options' => [
-                'label' => 'Contenido:',
-            ],
-        ]);
+        // The form will hydrate an object of type "BlogPost"
+        $this->setHydrator(new DoctrineHydrator($objectManager));
+        $entradaFieldset = new EntradaFieldset($objectManager);
+        $entradaFieldset->setUseAsBaseFieldset(true);
+        $this->add($entradaFieldset);
         $this->add([
             'name' => 'submit',
             'type' => 'Submit',

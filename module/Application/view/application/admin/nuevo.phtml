@@ -2,22 +2,10 @@
 // Agregamos el título de la página
 $this->headTitle('Crear nueva entrada');
 
-// Inicializamos el form
-$form->prepare();
 ?>
 <div class="page-header">
     <h1>Crear nueva entrada</h1>
 </div>
 <div class="row">
-<?php echo $this->form()->openTag($form->setAttributes(['class' => 'form-horizontal'])); ?>
-<div class="form-group">
-     <?php echo $this->formRow($form->get('titulo')); ?>
-</div>
-<div class="form-group">
-     <?php echo $this->formRow($form->get('contenido')); ?>
-</div>
-<div class="form-group">
-     <?php echo $this->formSubmit($form->get('submit')->setAttributes(['class' => 'btn btn-default'])); ?>
-</div>
-<?php echo $this->form()->closeTag(); ?>
+<?php echo $this->form($form); ?>
 </div>

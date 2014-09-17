@@ -3,6 +3,8 @@
 namespace Application\Entity;
 
 use Doctrine\ORM\Mapping as ORM; 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /** @ORM\Entity */
 class Entrada
@@ -23,7 +25,7 @@ class Entrada
      **/
     protected $categoria;
     /**
-     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="entradas")
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="entradas",cascade={"persist"})
      * @ORM\JoinTable(name="entradas_tags")
      **/
     protected $tags;    
@@ -147,6 +149,28 @@ class Entrada
     public function removeTag(\Application\Entity\Tag $tags)
     {
         $this->tags->removeElement($tags);
+    }
+
+    /**
+     * @param Collection $tags
+     */
+    public function addTags(Collection $tags)
+    {
+        foreach ($tags as $tag) {
+            $tag->addEntrada($this);
+            $this->tags->add($tag);
+        }
+    }
+
+    /**
+     * @param Collection $tags
+     */
+    public function removeTags(Collection $tags)
+    {
+        foreach ($tags as $tag) {
+            $tag->removeEntrada($this);
+            $this->tags->removeElement($tag);
+        }
     }
 
     /**
