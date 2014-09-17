@@ -36,6 +36,12 @@ class Entrada
      * @ORM\OneToMany(targetEntity="Imagen", mappedBy="entrada")
      **/
     protected $imagenes;
+
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection();
+        $this->imagenes = new ArrayCollection();
+    }
     /**
      * Get id
      *
@@ -95,5 +101,117 @@ class Entrada
     public function getResumen()
     {
         return wordwrap($this->getContenido(), 200, '...', true);
+    }
+
+    /**
+     * Set categoria
+     *
+     * @param \Application\Entity\Categoria $categoria
+     * @return Entrada
+     */
+    public function setCategoria(\Application\Entity\Categoria $categoria = null)
+    {
+        $this->categoria = $categoria;
+
+        return $this;
+    }
+
+    /**
+     * Get categoria
+     *
+     * @return \Application\Entity\Categoria 
+     */
+    public function getCategoria()
+    {
+        return $this->categoria;
+    }
+
+    /**
+     * Add tags
+     *
+     * @param \Application\Entity\Tag $tags
+     * @return Entrada
+     */
+    public function addTag(\Application\Entity\Tag $tags)
+    {
+        $this->tags[] = $tags;
+
+        return $this;
+    }
+
+    /**
+     * Remove tags
+     *
+     * @param \Application\Entity\Tag $tags
+     */
+    public function removeTag(\Application\Entity\Tag $tags)
+    {
+        $this->tags->removeElement($tags);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Set autor
+     *
+     * @param \Application\Entity\Usuario $autor
+     * @return Entrada
+     */
+    public function setAutor(\Application\Entity\Usuario $autor = null)
+    {
+        $this->autor = $autor;
+
+        return $this;
+    }
+
+    /**
+     * Get autor
+     *
+     * @return \Application\Entity\Usuario 
+     */
+    public function getAutor()
+    {
+        return $this->autor;
+    }
+
+    /**
+     * Add imagenes
+     *
+     * @param \Application\Entity\Imagen $imagenes
+     * @return Entrada
+     */
+    public function addImagene(\Application\Entity\Imagen $imagenes)
+    {
+        $this->imagenes[] = $imagenes;
+
+        return $this;
+    }
+
+    /**
+     * Remove imagenes
+     *
+     * @param \Application\Entity\Imagen $imagenes
+     */
+    public function removeImagene(\Application\Entity\Imagen $imagenes)
+    {
+        $this->imagenes->removeElement($imagenes);
+    }
+
+    /**
+     * Get imagenes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getImagenes()
+    {
+        return $this->imagenes;
     }
 }
